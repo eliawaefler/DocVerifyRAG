@@ -90,20 +90,4 @@ if __name__ == "__main__":
         docs = ingest(file_path)
         st.write('## Querying Together.ai API')
         metadata = generate_metadata(docs, FILEPATH)
-        st.chat_message(metadata)
-
-    """
-    parser = argparse.ArgumentParser(description="Generate metadata for a BIM document")
-    parser.add_argument("document", metavar="FILEPATH", type=str,
-                        help="Path to the BIM document")
-
-    args = parser.parse_args()
-
-    if not os.path.exists(args.document) or not os.path.isfile(args.document):
-        print("File '{}' not found or not accessible.".format(args.document))
-        sys.exit(-1)
-
-    docs = ingest(args.document)
-    metadata = generate_metadata(docs)
-    print(metadata)
-    """
+        st.write(metadata)
