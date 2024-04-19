@@ -42,8 +42,8 @@ Powered by Vectara vector store technology and supported by the innovative capab
 
 ## Screenshots
 
-![Screenshot 2024-04-19 130438](https://github.com/sandramsc/DocVerifyRAG/assets/19821445/a5628346-994d-4ba3-9717-6b06ca419144)
 
+![ttthh](https://github.com/eliawaefler/DocVerifyRAG/assets/19821445/331845d7-a360-4315-92ef-d4bb50021eaa)
 
 ## Technology Stack
 
