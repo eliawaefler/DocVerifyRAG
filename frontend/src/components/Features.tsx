@@ -17,10 +17,10 @@ const features: FeatureProps[] = [
 ];
 
 const featureList: string[] = [
-  "STEP1: Do this",
-  "STEP2: Do that that",
-  "STEP3: Do that that that",
-  "STEP4: Do that that that that",
+  "STEP1: Upload Document",
+  "STEP2: Classify Document",
+  "STEP3: Verify Metadata",
+  "STEP4: Correct Anomalies",
 ];
 
 export const Features = () => {

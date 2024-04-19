@@ -1,4 +1,3 @@
-
 ---
 title: DocVerifyRAG
 emoji: 🐠
@@ -11,15 +10,13 @@ pinned: false
 ---
 
 <!-- PROJECT TITLE -->
-  <h1 align="center">DocVerifyRAG: Document Verification and Anomaly Detection</h1>
+  <h1 align="center">DocVerifyRAG: Transforming Document Authentication with AI - Uncover Anomalies, Ensure Confidence</h1>
  <div id="header" align="center">
 </div>
 <h2 align="center">
  Description
 </h2>
-<p align="center"> Introducing DocVerifyRAG, a cutting-edge solution revolutionizing document verification processes across various sectors. Our app goes beyond mere document classification; it focuses on ensuring metadata accuracy by cross-referencing against a vast vector database of exemplary cases. Inspired by the necessity for precise data management, DocVerifyRAG leverages AI to scrutinize document metadata, instantly flagging anomalies and offering suggested corrections.
-
-Powered by Vectara vector store technology and supported by the innovative capabilities of together.ai API, our app employs advanced anomaly detection algorithms to scrutinize metadata, ensuring compliance with regulatory standards and enhancing data integrity. With DocVerifyRAG, users can effortlessly verify document metadata accuracy, minimizing errors and streamlining operational efficiency.</p>
+<p align="center"> Introducing DocVerifyRAG, a cutting-edge solution revolutionizing document verification processes across various sectors. Our app goes beyond mere document classification; it focuses on ensuring metadata accuracy by cross-referencing against a vast vector database of exemplary cases. Inspired by the necessity for precise data management, DocVerifyRAG leverages AI to scrutinize document metadata, instantly flagging anomalies and offering suggested corrections. Powered by Vectara vector store technology and supported by the innovative capabilities of together.ai API, our app employs advanced anomaly detection algorithms to scrutinize metadata, ensuring compliance with regulatory standards and enhancing data integrity. With DocVerifyRAG, users can effortlessly verify document metadata accuracy, minimizing errors and streamlining operational efficiency.</p>
 
 ## Table of Contents
 
@@ -42,8 +39,8 @@ Powered by Vectara vector store technology and supported by the innovative capab
 
 ## Screenshots
 
-![Screenshot 2024-04-19 130438](https://github.com/sandramsc/DocVerifyRAG/assets/19821445/a5628346-994d-4ba3-9717-6b06ca419144)
 
+![ttthh](https://github.com/eliawaefler/DocVerifyRAG/assets/19821445/331845d7-a360-4315-92ef-d4bb50021eaa)
 
 ## Technology Stack
 
@@ -53,7 +50,11 @@ Powered by Vectara vector store technology and supported by the innovative capab
 | Python     | Programming Language        |
 | Flask      | Web Framework               |
 | Docker     | Containerization            |
-| Tech Name    | Short description                    |
+| Together AI    | Empowers developers to train, fine-tune, and deploy gen AI models. |
+| Hugging Face    | Develops computation tools for building applications using machine learning. |
+| React    | JavaScript library for building user interfaces based on components.  |
+| Streamlit    | Open-source Python framework for machine learning and data science teams. Create interactive data apps in minutes.  |
+|LlamaIndex| Streamlines data integration, indexing, and querying for AI apps.|
 
 ### Features
 
