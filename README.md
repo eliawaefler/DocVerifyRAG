@@ -40,7 +40,8 @@ pinned: false
 
 ## Screenshots
 
-[Add screenshots here]
+![Screenshot 2024-04-19 130438](https://github.com/sandramsc/DocVerifyRAG/assets/19821445/a5628346-994d-4ba3-9717-6b06ca419144)
+
 
 ## Technology Stack
 
