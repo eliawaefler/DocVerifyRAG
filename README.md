@@ -54,6 +54,7 @@ pinned: false
 | Hugging Face    | Develops computation tools for building applications using machine learning. |
 | React    | JavaScript library for building user interfaces based on components.  |
 | Streamlit    | Open-source Python framework for machine learning and data science teams. Create interactive data apps in minutes.  |
+|LlamaIndex| Streamlines data integration, indexing, and querying for AI apps.|
 
 ### Features
 
