@@ -1,32 +1,15 @@
 import streamlit as st
 import tempfile
-#from scripts import analyze_metadata, generate_metadata, ingest, MODEL_NAME
 from scripts import *
 import os
-import argparse
-import sys
-from dotenv import load_dotenv
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Vectara
 
 from langchain.prompts import PromptTemplate
-# from langchain_text_splitters import RecursiveCharacterTextSplitter
-# import json
-# from langchain_core.output_parsers import StrOutputParser
-# from langchain_core.prompts import ChatPromptTemplate
-# from langchain_core.runnables import RunnablePassthrough
-# from langchain_community.document_loaders import TextLoader
-# from langchain_community.document_loaders import UnstructuredPDFLoader
 
-load_dotenv()
-
-#MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
-
-vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
-vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
-vectara_api_key = os.environ['VECTARA_API_KEY']
 
 embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
+
 
 vectara = Vectara(vectara_customer_id=vectara_customer_id,
                   vectara_corpus_id=vectara_corpus_id,
@@ -62,7 +45,7 @@ def get_summary(documents):
 if __name__ == "__main__":
 
     st.title('# DocVerifyRAG')
-    st.write('## Anomaly detection for BIM document metadata')
+    st.write('## Anomaly detection for document metadata')
 
     with st.form('analyze_form'):
         st.write('Enter your file metadata in the following schema:')

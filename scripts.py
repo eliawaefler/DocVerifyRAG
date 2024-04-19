@@ -1,20 +1,19 @@
 import os
-import io
 import argparse
 import json
 import openai
 import sys
+
+import streamlit
 from dotenv import load_dotenv
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Vectara
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
 from langchain.prompts import PromptTemplate
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import re
+
 
 def json_from_string(input_string):
     # Use a regular expression to find text that starts with '{' and ends with '}'
@@ -43,15 +42,22 @@ def json_from_string(input_string):
         # Return a default JSON object if no potential JSON string is found
         return json.dumps({"error": "No JSON-like data detected"})
 
-load_dotenv()
+# load_dotenv()
 
 MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
-vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
-vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
-vectara_api_key = os.environ['VECTARA_API_KEY']
-
 embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
+
+
+try:
+    vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
+    vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
+    vectara_api_key = os.environ['VECTARA_API_KEY']
+except:
+    vectara_customer_id = streamlit.secrets['VECTARA_CUSTOMER_ID']
+    vectara_corpus_id = streamlit.secrets['VECTARA_CORPUS_ID']
+    vectara_api_key = streamlit.secrets['VECTARA_API_KEY']
+
 
 vectara = Vectara(vectara_customer_id=vectara_customer_id,
                       vectara_corpus_id=vectara_corpus_id,
@@ -113,7 +119,6 @@ def ingest(file_path):
     return docs
 
 
-
 def generate_metadata(docs, my_file_path):
     prompt_template = """
     BimDiscipline = ['plumbing', 'network', 'heating', 'electrical', 'ventilation', 'architecture']
@@ -131,11 +136,14 @@ def generate_metadata(docs, my_file_path):
     prompt = f'{prompt_template}{context}"\nFilepath:{filepath}'
 
     #print(prompt)
-    
+    try:
+        together_api_key = os.environ["TOGETHER_API_KEY"]
+    except:
+        together_api_key = streamlit.secrets["TOGETHER_API_KEY"]
     # Create client
     client = openai.OpenAI(
         base_url="https://api.together.xyz/v1",
-        api_key=os.environ["TOGETHER_API_KEY"],
+        api_key=together_api_key,
         #api_key=userdata.get('TOGETHER_API_KEY'),    
     )
 
@@ -164,6 +172,8 @@ def analyze_metadata(filename, description, discipline):
 
 
 if __name__ == "__main__":
+
+
     parser = argparse.ArgumentParser(description="Generate metadata for a BIM document")
     parser.add_argument("document", metavar="FILEPATH", type=str,
                         help="Path to the BIM document")
