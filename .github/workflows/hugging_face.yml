@@ -13,10 +13,8 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Navigate to frontend directory
-        run: cd ./frontend
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://AIhackathons:$HF_TOKEN@huggingface.co/spaces/AIhackathons/docverifyrag main
-
+          HF_USER: ${{ github.repository_owner }}
+        run: git push https://$HF_USER:$HF_TOKEN@huggingface.co/spaces/$HF_USER/docverifyrag main

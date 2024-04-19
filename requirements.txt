@@ -6,6 +6,4 @@ python-dotenv
 streamlit
 langchain
 openai
-chromadb
-tiktoken
-python-poppler
+sentence-transformers

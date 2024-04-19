@@ -7,19 +7,62 @@ import sys
 from dotenv import load_dotenv
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import UnstructuredPDFLoader
-from langchain_community.embeddings.fake import FakeEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Vectara
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain.prompts import PromptTemplate
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 
 load_dotenv()
 
+MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
-import io
+vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
+vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
+vectara_api_key = os.environ['VECTARA_API_KEY']
 
-def ingest(file_obj, file_ext='pdf'):
-    if file_ext == 'pdf':
-        loader = UnstructuredPDFLoader(file_obj)
-    elif file_ext == 'txt':
-        loader = TextLoader(file_obj)
+embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
+
+vectara = Vectara(vectara_customer_id=vectara_customer_id,
+                      vectara_corpus_id=vectara_corpus_id,
+                      vectara_api_key=vectara_api_key)
+
+
+summary_config = {"is_enabled": True, "max_results": 3, "response_lang": "eng"}
+retriever = vectara.as_retriever(
+    search_kwargs={"k": 3, "summary_config": summary_config}
+)
+
+template = """
+passage: You are a helpful assistant that understands BIM building documents.
+passage: You will analyze BIM document metadata composed of filename, description, and engineering discipline.
+passage: The metadata is written in German.
+passage: Filename: {filename}, Description: {description}, Engineering discipline: {discipline}.
+query: Does the filename match other filenames within the same discipline?
+query: Does the description match the engineering discipline?
+query: How different is the metadata to your curated information?
+query: Highligh any discrepancies and comment on wether or not the metadata is anomalous.
+"""
+
+prompt = PromptTemplate(template=template, input_variables=['filename', 'description', 'discipline'])
+
+
+def get_sources(documents):
+    return documents[:-1]
+
+def get_summary(documents):
+    return documents[-1].page_content
+
+def ingest(file_path):
+    extension = os.path.splitext(file_path)[1].lower()
+
+    if extension == '.pdf':
+        loader = UnstructuredPDFLoader(file_path)
+    elif extension == '.txt':
+        loader = TextLoader(file_path)
     else:
         raise NotImplementedError('Only .txt or .pdf files are supported')
 
@@ -41,6 +84,7 @@ def ingest(file_obj, file_ext='pdf'):
     docs = text_splitter.split_documents(documents)
 
     return docs
+
 
 
 def generate_metadata(docs):
@@ -70,7 +114,7 @@ def generate_metadata(docs):
 
     # Call the LLM with the JSON schema
     chat_completion = client.chat.completions.create(
-        model="mistralai/Mixtral-8x7B-Instruct-v0.1",        
+        model=MODEL_NAME,        
         messages=[
             {
                 "role": "system",
@@ -84,6 +128,11 @@ def generate_metadata(docs):
     )
 
     return json.loads(chat_completion.choices[0].message.content)    
+
+
+def analyze_metadata(filename, description, discipline):
+    formatted_prompt = prompt.format(filename=filename, description=description, discipline=discipline)
+    return (retriever | get_summary).invoke(formatted_prompt)
 
 
 if __name__ == "__main__":
