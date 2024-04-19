@@ -1,6 +1,7 @@
 import streamlit as st
 import tempfile
-from scripts import analyze_metadata, generate_metadata, ingest, MODEL_NAME
+#from scripts import analyze_metadata, generate_metadata, ingest, MODEL_NAME
+from scripts import *
 import os
 import argparse
 import sys
@@ -85,11 +86,13 @@ if __name__ == "__main__":
             tmp.write(uploaded_file.read())
             file_path = tmp.name
             st.write(f'Created temporary file {file_path}')
-
+        FILEPATH = file_path
         docs = ingest(file_path)
         st.write('## Querying Together.ai API')
-        metadata = generate_metadata(docs)
+        metadata = generate_metadata(docs, FILEPATH)
+        st.chat_message(metadata)
 
+    """
     parser = argparse.ArgumentParser(description="Generate metadata for a BIM document")
     parser.add_argument("document", metavar="FILEPATH", type=str,
                         help="Path to the BIM document")
@@ -103,3 +106,4 @@ if __name__ == "__main__":
     docs = ingest(args.document)
     metadata = generate_metadata(docs)
     print(metadata)
+    """

@@ -14,34 +14,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain.prompts import PromptTemplate
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import re
 
-def json_from_string(input_string):
-    # Use a regular expression to find text that starts with '{' and ends with '}'
-    match = re.search(r'\{[^{}]*\}', input_string)
-    if match:
-        # Extract the potential JSON string
-        potential_json = match.group(0)
-        try:
-            # Attempt to parse the extracted string as JSON
-            parsed_json = json.loads(potential_json)
-            # Return the parsed JSON if successful
-            return json.dumps(parsed_json)
-        except json.JSONDecodeError:
-            # Handle cases where the JSON is not valid
-            # Attempt to fix common issues like missing quotes
-            corrected_json = re.sub(r'(\b\w+\b):', r'"\1":', potential_json)
-            corrected_json = re.sub(r': (\b\w+\b)([,\}])', r': "\1"\2', corrected_json)
-            try:
-                # Try parsing again with the corrected string
-                parsed_json = json.loads(corrected_json)
-                return json.dumps(parsed_json)
-            except json.JSONDecodeError:
-                # Return a default JSON object if it still fails
-                return json.dumps({"error": "No valid JSON found"})
-    else:
-        # Return a default JSON object if no potential JSON string is found
-        return json.dumps({"error": "No JSON-like data detected"})
 
 load_dotenv()
 
@@ -114,7 +87,7 @@ def ingest(file_path):
 
 
 
-def generate_metadata(docs, my_file_path):
+def generate_metadata(docs):
     prompt_template = """
     BimDiscipline = ['plumbing', 'network', 'heating', 'electrical', 'ventilation', 'architecture']
 
@@ -153,9 +126,8 @@ def generate_metadata(docs, my_file_path):
             }
         ]
     )
-    stringanswer = str(chat_completion.choices[0].message.content)
-    print(stringanswer)
-    return json.loads(json_from_string(stringanswer))
+
+    return json.loads(chat_completion.choices[0].message.content)    
 
 
 def analyze_metadata(filename, description, discipline):
