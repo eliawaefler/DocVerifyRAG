@@ -70,6 +70,10 @@ Powered by Vectara vector store technology and supported by the innovative capab
 - Employs Hugging Face embeddings E5 multilingual model for precise analysis of multilingual data.
 - Identifies anomalies in names, descriptions, and disciplines, providing actionable insights for data accuracy.
 
+4. **User-Friendly Interface:**
+- Intuitive web interface for effortless document upload, metadata verification, and correction.
+- Simplifies document management processes, reducing manual effort and enhancing operational efficiency.
+
 ### Install locally
 
 #### Step 1 - Frontend
@@ -123,7 +127,7 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 
 ### Usage
 
-Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions for hospitals.
+Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions.
 ## Authors
 
 | Name           | Link                                      |

@@ -1,6 +1,7 @@
 import streamlit as st
 import tempfile
-from scripts import analyze_metadata, generate_metadata, ingest, MODEL_NAME
+#from scripts import analyze_metadata, generate_metadata, ingest, MODEL_NAME
+from scripts import *
 import os
 import argparse
 import sys
@@ -85,21 +86,8 @@ if __name__ == "__main__":
             tmp.write(uploaded_file.read())
             file_path = tmp.name
             st.write(f'Created temporary file {file_path}')
-
+        FILEPATH = file_path
         docs = ingest(file_path)
         st.write('## Querying Together.ai API')
-        metadata = generate_metadata(docs)
-
-    parser = argparse.ArgumentParser(description="Generate metadata for a BIM document")
-    parser.add_argument("document", metavar="FILEPATH", type=str,
-                        help="Path to the BIM document")
-
-    args = parser.parse_args()
-
-    if not os.path.exists(args.document) or not os.path.isfile(args.document):
-        print("File '{}' not found or not accessible.".format(args.document))
-        sys.exit(-1)
-
-    docs = ingest(args.document)
-    metadata = generate_metadata(docs)
-    print(metadata)
+        metadata = generate_metadata(docs, FILEPATH)
+        st.write(metadata)
