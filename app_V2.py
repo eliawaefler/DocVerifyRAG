@@ -11,8 +11,24 @@ import os
 import pickle
 from datetime import datetime
 from backend.generate_metadata import generate_metadata, ingest
-
-MODEL_NAME = "mixtral"
+import os
+import io
+import argparse
+import json
+import openai
+import sys
+import streamlit as st
+from dotenv import load_dotenv
+from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import UnstructuredPDFLoader
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Vectara
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain.prompts import PromptTemplate
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 css = '''
 <style>
 .chat-message {
@@ -56,6 +72,40 @@ user_template = '''
     <div class="message">{{MSG}}</div>
 </div>
 '''
+
+
+load_dotenv()
+
+MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
+
+vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
+vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
+vectara_api_key = os.environ['VECTARA_API_KEY']
+
+embeddings = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large")
+
+vectara = Vectara(vectara_customer_id=vectara_customer_id,
+                      vectara_corpus_id=vectara_corpus_id,
+                      vectara_api_key=vectara_api_key)
+
+
+summary_config = {"is_enabled": True, "max_results": 3, "response_lang": "eng"}
+retriever = vectara.as_retriever(
+    search_kwargs={"k": 3, "summary_config": summary_config}
+)
+
+template = """
+passage: You are a helpful assistant that understands BIM building documents.
+passage: You will analyze BIM document metadata composed of filename, description, and engineering discipline.
+passage: The metadata is written in German.
+passage: Filename: {filename}, Description: {description}, Engineering discipline: {discipline}.
+query: Does the filename match other filenames within the same discipline?
+query: Does the description match the engineering discipline?
+query: How different is the metadata to your curated information?
+query: Highligh any discrepancies and comment on wether or not the metadata is anomalous.
+"""
+
+prompt = PromptTemplate(template=template, input_variables=['filename', 'description', 'discipline'])
 
 
 def get_pdf_text(pdf_docs):
