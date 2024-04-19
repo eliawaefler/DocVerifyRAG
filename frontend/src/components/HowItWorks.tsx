@@ -10,19 +10,19 @@ interface FeatureProps {
 const features: FeatureProps[] = [
   {
     icon: <MedalIcon />,
-    title: "Document Classification",
-    description:    "Utilizes AI/ML algorithms to classify documents based on content and metadata",  },
+    title: "Metadata Verification",
+    description:    "Instantly identifies anomalies and discrepancies, ensuring metadata accuracy and compliance.",  },
   {
     icon: <MapIcon />,
-    title: "Anomaly Detection",
+    title: "Automated Metadata Correction",
     description:
-      "Identifies mistakes and misclassifications in document metadata through automated anomaly detection",
+      "Offers suggested metadata corrections based on processed PDF files, facilitating swift and accurate adjustments.",
   },
   {
     icon: <PlaneIcon />,
-    title: "User-Friendly Interface",
+    title: "Question Answering Retriever",
     description:
-      "Simplifies the document management process for hospital staff, reducing manual effort and errors",
+      "Utilizes Vectara vector store technology for efficient retrieval of relevant information.",
   },
 ];
 
@@ -40,7 +40,8 @@ export const HowItWorks = () => {
        Verification
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        DocVerifyRAG revolutionizes document verification in healthcare, harnessing AI to classify documents and rectify metadata errors. With automated anomaly detection, ensure precise data management, compliance, and enhanced patient care.
+        
+Introducing DocVerifyRAG, your ultimate solution for hassle-free document verification! Say goodbye to errors and inefficiencies with our cutting-edge app. Powered by AI and Vectara vector store technology, we ensure metadata accuracy seamlessly. With DocVerifyRAG, breeze through verification, boost efficiency, and stay compliant effortlessly.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
