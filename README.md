@@ -35,7 +35,7 @@ pinned: false
 </details>
 
 ## TRY the prototype
-[DocVerifyRAG](https://docverify-rag.vercel.app)
+[DocVerifyRAG](https://docverifyrag.vercel.app/)
 
 ## Screenshots
 
