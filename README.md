@@ -10,7 +10,7 @@ pinned: false
 ---
 
 <!-- PROJECT TITLE -->
-  <h1 align="center">DocVerifyRAG: Transforming Document Authentication with AI - Uncover Anomalies, Ensure Confidence</h1>
+  <h1 align="center">DocVerifyRAG: Anomaly detection for BIM document metadata</h1>
  <div id="header" align="center">
 </div>
 <h2 align="center">
