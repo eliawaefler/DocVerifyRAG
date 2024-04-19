@@ -17,7 +17,9 @@ pinned: false
 <h2 align="center">
  Description
 </h2>
-<p align="center"> DocVerifyRAG is a revolutionary tool designed to streamline document verification processes in hospitals. It utilizes AI to classify documents and identify mistakes in metadata, ensuring accurate and efficient document management. Inspired by the need for improved data accuracy in healthcare, DocVerifyRAG provides automated anomaly detection to identify misclassifications and errors in document metadata, enhancing data integrity and compliance with regulatory standards. </p>
+<p align="center"> Introducing DocVerifyRAG, a cutting-edge solution revolutionizing document verification processes across various sectors. Our app goes beyond mere document classification; it focuses on ensuring metadata accuracy by cross-referencing against a vast vector database of exemplary cases. Inspired by the necessity for precise data management, DocVerifyRAG leverages AI to scrutinize document metadata, instantly flagging anomalies and offering suggested corrections.
+
+Powered by Vectara vector store technology and supported by the innovative capabilities of together.ai API, our app employs advanced anomaly detection algorithms to scrutinize metadata, ensuring compliance with regulatory standards and enhancing data integrity. With DocVerifyRAG, users can effortlessly verify document metadata accuracy, minimizing errors and streamlining operational efficiency.</p>
 
 ## Table of Contents
 
@@ -40,7 +42,8 @@ pinned: false
 
 ## Screenshots
 
-[Add screenshots here]
+![Screenshot 2024-04-19 130438](https://github.com/sandramsc/DocVerifyRAG/assets/19821445/a5628346-994d-4ba3-9717-6b06ca419144)
+
 
 ## Technology Stack
 
@@ -54,17 +57,22 @@ pinned: false
 
 ### Features
 
-1. **Document Classification:**
-    - Utilizes AI/ML algorithms to classify documents based on content and metadata.
-    - Provides accurate and efficient document categorization for improved data management.
+1. **Metadata Verification:**
+- Cross-references document metadata against a comprehensive vector database of exemplary cases.
+- Instantly identifies anomalies and discrepancies, ensuring metadata accuracy and compliance.
 
-2. **Anomaly Detection:**
-    - Identifies mistakes and misclassifications in document metadata through automated anomaly detection.
-    - Enhances data integrity and accuracy by flagging discrepancies in document metadata.
+2. **Automated Metadata Correction:**
+- Offers suggested metadata corrections based on processed PDF files, facilitating swift and accurate adjustments.
+- Potential for automated inspection of numerous metadata rows for seamless large-scale data verification.
 
-3. **User-Friendly Interface:**
-    - Offers a user-friendly web interface for easy document upload, classification, and verification.
-    - Simplifies the document management process for hospital staff, reducing manual effort and errors.
+3. **Question Answering Retriever:**
+- Utilizes Vectara vector store technology for efficient retrieval of relevant information.
+- Employs Hugging Face embeddings E5 multilingual model for precise analysis of multilingual data.
+- Identifies anomalies in names, descriptions, and disciplines, providing actionable insights for data accuracy.
+
+4. **User-Friendly Interface:**
+- Intuitive web interface for effortless document upload, metadata verification, and correction.
+- Simplifies document management processes, reducing manual effort and enhancing operational efficiency.
 
 ### Install locally
 
@@ -119,7 +127,7 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 
 ### Usage
 
-Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions for hospitals.
+Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions.
 ## Authors
 
 | Name           | Link                                      |
