@@ -50,7 +50,10 @@ pinned: false
 | Python     | Programming Language        |
 | Flask      | Web Framework               |
 | Docker     | Containerization            |
-| Tech Name    | Short description                    |
+| Together AI    | Empowers developers to train, fine-tune, and deploy gen AI models. |
+| Hugging Face    | Develops computation tools for building applications using machine learning. |
+| React    | JavaScript library for building user interfaces based on components.  |
+| Streamlit    | Open-source Python framework for machine learning and data science teams. Create interactive data apps in minutes.  |
 
 ### Features
 
