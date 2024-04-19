@@ -16,9 +16,7 @@ pinned: false
 <h2 align="center">
  Description
 </h2>
-<p align="center"> Introducing DocVerifyRAG, a cutting-edge solution revolutionizing document verification processes across various sectors. Our app goes beyond mere document classification; it focuses on ensuring metadata accuracy by cross-referencing against a vast vector database of exemplary cases. Inspired by the necessity for precise data management, DocVerifyRAG leverages AI to scrutinize document metadata, instantly flagging anomalies and offering suggested corrections.
-
-Powered by Vectara vector store technology and supported by the innovative capabilities of together.ai API, our app employs advanced anomaly detection algorithms to scrutinize metadata, ensuring compliance with regulatory standards and enhancing data integrity. With DocVerifyRAG, users can effortlessly verify document metadata accuracy, minimizing errors and streamlining operational efficiency.</p>
+<p align="center"> Introducing DocVerifyRAG, a cutting-edge solution revolutionizing document verification processes across various sectors. Our app goes beyond mere document classification; it focuses on ensuring metadata accuracy by cross-referencing against a vast vector database of exemplary cases. Inspired by the necessity for precise data management, DocVerifyRAG leverages AI to scrutinize document metadata, instantly flagging anomalies and offering suggested corrections. Powered by Vectara vector store technology and supported by the innovative capabilities of together.ai API, our app employs advanced anomaly detection algorithms to scrutinize metadata, ensuring compliance with regulatory standards and enhancing data integrity. With DocVerifyRAG, users can effortlessly verify document metadata accuracy, minimizing errors and streamlining operational efficiency.</p>
 
 ## Table of Contents
 
