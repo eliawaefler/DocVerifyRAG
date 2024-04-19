@@ -1,4 +1,3 @@
-
 ---
 title: DocVerifyRAG
 emoji: 🐠
